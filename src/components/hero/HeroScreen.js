@@ -2,6 +2,9 @@ import { useMemo } from "react";
 import { useParams, Navigate, useNavigate } from "react-router-dom"
 import { getHeroByID } from "../../selectors/getHeroById";
 
+// import batman from '../../assets/dc-batman.jpg'; // recurso estatico
+import { heroImg } from "../../helpers/heroImages"; // recurso dinamico con webpack
+
 export const HeroScreen = () => {
   const { heroeId } = useParams();
   const navigate = useNavigate();
@@ -24,13 +27,19 @@ export const HeroScreen = () => {
     navigate(-1);
   }
 
-  const imgPath = `/assets/img/${hero.id}.jpg`;
+  // const imgPath = `/assets/img/${hero.id}.jpg`; //Recurso estatico
+  const imgPath = heroImg(`./${hero.id}.jpg`);  //recurso dinamico con webpack
 
   return (
 
     <div className='row mt-5'>
       <div className='col-md-4'>
-        <img src={imgPath} alt={superhero} className='img-thumbnail animate__animated animate__fadeInLeft' />
+        <img
+          // src={imgPath}
+          src={imgPath}
+          alt={superhero}
+          className='img-thumbnail animate__animated animate__fadeInLeft'
+        />
       </div>
       <div className="col-8">
         <h3>{superhero}</h3>

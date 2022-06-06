@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+const heroImg = require.context('../../assets/img', true); //webpack
+
 export const HeroCard = ({
   id,
   superhero,
@@ -9,7 +11,8 @@ export const HeroCard = ({
   characters,
 }) => {
 
-  const imagePath = `/assets/img/${id}.jpg`
+  // const imagePath = `/assets/img/${id}.jpg`
+  const imagePath = heroImg(`./${id}.jpg`);  //recurso dinamico con webpack
 
   return (
     <div className="col animate__animated animate__fadeIn">
